@@ -6,10 +6,12 @@ from wtforms.validators import InputRequired, Email, Length
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+import os
 
 app = Flask(__name__)
+PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 app.config['SECRET_KEY'] = 'NOBODY-CAN-GUESS-THIS'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///D:\\tugas\\semester 7\\matkul\\Keamanan Jaringan Komputer(Cybersecurity)\\tugas\\tugas 11\\flask-login-and-signup\\db\\database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+ os.path.join(PROJECT_ROOT, 'db/database.db')
 Bootstrap(app)
 db = SQLAlchemy(app)
 login_manager = LoginManager()
